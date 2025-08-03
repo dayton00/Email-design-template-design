@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neumorphic Email</title>
+  <style>
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #e0e5ec;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .email-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #e0e5ec;
+      border-radius: 25px;
+      box-shadow: 10px 10px 30px #bec3c9, -10px -10px 30px #ffffff;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(145deg, #d1d9e6, #ffffff);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: #e0e5ec;
+      border-radius: 50%;
+      box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+      margin: 0 auto 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #4a6baf;
+    }
+
+    .header h1 {
+      margin: 0;
+      color: #4a6baf;
+      font-size: 28px;
+    }
+
+    .header p {
+      color: #666;
+      margin: 0.5rem 0 0;
+    }
+
+    /* Content Styles */
+    .content {
+      padding: 2rem;
+    }
+
+    .card {
+      background: #e0e5ec;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: inset 5px 5px 10px #bec3c9, inset -5px -5px 10px #ffffff;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #4a6baf;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .product-card {
+      background: #e0e5ec;
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 8px 8px 15px #bec3c9, -8px -8px 15px #ffffff;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 120px;
+      border-radius: 10px;
+      background: #e0e5ec;
+      margin-bottom: 0.5rem;
+      box-shadow: inset 3px 3px 6px #bec3c9, inset -3px -3px 6px #ffffff;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-title {
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    .product-price {
+      color: #4a6baf;
+      font-weight: bold;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 15px;
+      background: #e0e5ec;
+      box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      color: #4a6baf;
+      transition: all 0.3s ease;
+      margin: 0.5rem 0;
+    }
+
+    .btn:hover {
+      box-shadow: inset 2px 2px 5px #bec3c9, inset -2px -2px 5px #ffffff;
+      color: #3a5a9f;
+    }
+
+    .btn-primary {
+      background: linear-gradient(145deg, #4a6baf, #3a5a9f);
+      color: white;
+      box-shadow: 5px 5px 10px #bec3c9, -5px -5px 10px #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(145deg, #3a5a9f, #2a4a8f);
+      box-shadow: inset 2px 2px 5px #2a4a8f, inset -2px -2px 5px #4a6baf;
+    }
+
+    .btn-large {
+      padding: 1rem 2rem;
+      font-size: 16px;
+    }
+
+    .btn-center {
+      display: block;
+      text-align: center;
+      margin: 1.5rem auto;
+      width: fit-content;
+    }
+
+    /* Feature List */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature {
+      flex: 1 1 45%;
+      background: #e0e5ec;
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: inset 3px 3px 6px #bec3c9, inset -3px -3px 6px #ffffff;
+      display: flex;
+      align-items: center;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: #e0e5ec;
+      border-radius: 50%;
+      box-shadow: 3px 3px 6px #bec3c9, -3px -3px 6px #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(145deg, #d1d9e6, #ffffff);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: #e0e5ec;
+      border-radius: 50%;
+      box-shadow: 3px 3px 6px #bec3c9, -3px -3px 6px #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      box-shadow: inset 2px 2px 5px #bec3c9, inset -2px -2px 5px #ffffff;
+      transform: scale(0.95);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(74, 107, 175, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(74, 107, 175, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(74, 107, 175, 0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .feature {
+        flex: 1 1 100%;
+      }
+      
+      .content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <div class="logo floating">N</div>
+      <h1>Welcome to Neumorphic!</h1>
+      <p>Your premium design experience starts here</p>
+    </div>
+
+    <div class="content">
+      <div class="card">
+        <h2>✨ New Collection Just Dropped</h2>
+        <p>Discover our latest neumorphic designs that will transform your digital experience. Limited time offer for our first 100 customers!</p>
+        
+        <div class="product-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Design Kit">
+            </div>
+            <div class="product-title">UI Design Kit</div>
+            <div class="product-price">$49.99</div>
+            <a href="#" class="btn">View Details</a>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Icons Pack">
+            </div>
+            <div class="product-title">Icon Pack</div>
+            <div class="product-price">$29.99</div>
+            <a href="#" class="btn">View Details</a>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Templates">
+            </div>
+            <div class="product-title">Email Templates</div>
+            <div class="product-price">$39.99</div>
+            <a href="#" class="btn">View Details</a>
+          </div>
+          
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Illustrations">
+            </div>
+            <div class="product-title">3D Illustrations</div>
+            <div class="product-price">$59.99</div>
+            <a href="#" class="btn">View Details</a>
+          </div>
+        </div>
+        
+        <a href="#" class="btn btn-primary btn-large btn-center pulse">SHOP NOW - 20% OFF</a>
+      </div>
+      
+      <div class="card">
+        <h2>🌟 Why Choose Neumorphic?</h2>
+        <p>Our products are designed with care to provide the best user experience possible.</p>
+        
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">✔</div>
+            <div>Premium Quality Designs</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🔄</div>
+            <div>Easy to Customize</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📱</div>
+            <div>Fully Responsive</div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <div>Lightning Fast</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>🎁 Special Offer Just For You</h2>
+        <p>As a valued subscriber, we're offering you an exclusive 30% discount on your first purchase. Use code <strong>WELCOME30</strong> at checkout.</p>
+        <p>This offer expires in 7 days, so don't miss out!</p>
+        <a href="#" class="btn btn-primary btn-center">Redeem Your Discount</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Follow us on social media for more updates</p>
+      <div class="social-links">
+        <a href="#" class="social-link">f</a>
+        <a href="#" class="social-link">t</a>
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+      </div>
+      <p>© 2023 Neumorphic Designs. All rights reserved.</p>
+      <p><a href="#" style="color: #4a6baf; text-decoration: none;">Unsubscribe</a> | <a href="#" style="color: #4a6baf; text-decoration: none;">Privacy Policy</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Simple animation triggers for demonstration
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add hover effect to product cards
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+      
+      // Pulse animation for CTA button
+      const ctaButton = document.querySelector('.pulse');
+      setInterval(() => {
+        ctaButton.classList.toggle('pulse');
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
